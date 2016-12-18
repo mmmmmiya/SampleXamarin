@@ -1,5 +1,6 @@
 ﻿using Prism.Unity;
 using SampleXamarin.Views;
+using Xamarin.Forms;
 
 namespace SampleXamarin
 {
@@ -11,12 +12,13 @@ namespace SampleXamarin
 		{
 			InitializeComponent();
 
-			NavigationService.NavigateAsync("MainPage?title=Hello%20from%20Xamarin.Forms");
+			NavigationService.NavigateAsync("NavigationPage/MainPage");
 		}
 
 		protected override void RegisterTypes()
 		{
 			Container.RegisterTypeForNavigation<MainPage>();
+			Container.RegisterTypeForNavigation<NavigationPage>();
 		}
 	}
 }

@@ -1,10 +1,11 @@
 ﻿using System;
+using Realms;
+
 namespace SampleXamarin
 {
-	public class ItemData
+	public class ItemData : RealmObject
 	{
-		public ItemData()
-		{
-		}
+		public int Id { get; set; }
+		public string Message { get; set; }
 	}
 }

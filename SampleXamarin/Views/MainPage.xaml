@@ -1,6 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="SampleXamarin.Views.MainPage" Title="MainPage">
-	<StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-		<Label Text="{Binding Title}" />
-	</StackLayout>
+	<ContentPage.Content>
+        <StackLayout Padding="30,5,30,5">
+            <ListView ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Horizontal" Padding="5">
+								<Label Text="{Binding Message}" />
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+            <StackLayout Orientation="Vertical" VerticalOptions="End">
+                <Entry Placeholder="Write something here..." Keyboard="Chat" Text="{Binding Text}" />
+                <Button Text="Send" WidthRequest="80" Command="{Binding SendCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
