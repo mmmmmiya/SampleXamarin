@@ -6,9 +6,14 @@
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
-							<StackLayout Orientation="Horizontal" Padding="5">
-								<Label Text="{Binding Message}" />
-							</StackLayout>
+<!--							<ViewCell.ContextActions>
+								<MenuItem Text="Delete" Command="{Binding DeleteCommand}" IsDestructive="true" />
+							</ViewCell.ContextActions>-->
+							<ViewCell.View>
+								<StackLayout Orientation="Horizontal" Padding="5">
+									<Label Text="{Binding Message}" />
+								</StackLayout>
+							</ViewCell.View>
 						</ViewCell>
 					</DataTemplate>
 				</ListView.ItemTemplate>

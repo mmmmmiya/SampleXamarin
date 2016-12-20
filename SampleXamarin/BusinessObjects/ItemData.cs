@@ -5,7 +5,9 @@ namespace SampleXamarin
 {
 	public class ItemData : RealmObject
 	{
-		public int Id { get; set; }
+		[PrimaryKey]
+		public string Id { get; set; }
+
 		public string Message { get; set; }
 	}
 }

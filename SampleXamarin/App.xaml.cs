@@ -1,5 +1,6 @@
 ﻿using Prism.Unity;
 using SampleXamarin.Views;
+using SampleXamarin.Services;
 using Xamarin.Forms;
 
 namespace SampleXamarin
