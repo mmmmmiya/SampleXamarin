@@ -18,12 +18,20 @@ namespace SampleXamarin.ViewModels
 			this.PageDialogService = pageDialogService;
 			IItemDataService itemDataService = new ItemDataService();
 			this.ItemDataService = itemDataService;
-			//this.Items = itemDataService.GetAll();
-			//this.ItemDataService = itemDataService;
+
+			var idData = ItemDataService.GetAll();
+			if (idData.Count() == 0)
+			{
+				count = 0;
+			}
+			else
+			{
+				count = idData.Select(data => data.Id).Max() + 1;
+			}
 
 			this.SendCommand = new DelegateCommand(this.AddItemData, () => !string.IsNullOrEmpty(this.Text)).ObservesProperty(() => this.Text);
 
-			//this.DeleteCommand = new DelegateCommand<ItemData>(this.DeleteItemData);
+			this.DeleteCommand = new DelegateCommand<ItemData>(this.DeleteItemData);
 		}
 
 		// PageDialogService
@@ -54,7 +62,7 @@ namespace SampleXamarin.ViewModels
 
 		private void AddItemData()
 		{
-			this.ItemDataService.Insert(new ItemData{Id = count.ToString(), Message = this.Text });
+			this.ItemDataService.Insert(new ItemData{Id = count, Message = this.Text });
 			this.Text = "";
 			this.Items = this.ItemDataService.GetAll();
 			count++;
@@ -73,6 +81,7 @@ namespace SampleXamarin.ViewModels
 
 		public void OnNavigatedTo(NavigationParameters parameters)
 		{
+			this.Items = ItemDataService.GetAll();
 		}
 	}
 }

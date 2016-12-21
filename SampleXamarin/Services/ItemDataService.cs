@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Realms;
 
@@ -8,9 +9,9 @@ namespace SampleXamarin.Services
 	public interface IItemDataService
 	{
 		ObservableCollection<ItemData> GetAll();
-		ItemData GetById(string id);
+		ItemData GetById(int id);
 		void Insert(ItemData itemData);
-		void Delete(string id);
+		void Delete(int id);
 	}
 
 	public class ItemDataService : IItemDataService
@@ -24,15 +25,19 @@ namespace SampleXamarin.Services
 		public ObservableCollection<ItemData> GetAll()
 		{
 			var items = realm.All<ItemData>().ToList();
+			foreach (var item in items)
+			{
+				Debug.WriteLine("["+item.Id+"]:"+item.Message);
+			}
 			return new ObservableCollection<ItemData>(items);
 		}
 
-		public ItemData GetById(string id)
+		public ItemData GetById(int id)
 		{
 			return realm.All<ItemData>().ToList().FirstOrDefault(i => i.Id == id);
 		}
 
-		public void Delete(string id)
+		public void Delete(int id)
 		{
 			var item = realm.All<ItemData>().ToList().FirstOrDefault(i => i.Id == id);
 			if (item == null)
