@@ -47,8 +47,8 @@ namespace SampleXamarin.ViewModels
 		public string Text { get { return _text; } set { SetProperty(ref _text, value); } }
 
 		// list view data
-		public ObservableCollection<ItemData> items;
-		public ObservableCollection<ItemData> Items
+		private IEnumerable<ItemData> items;
+		public IEnumerable<ItemData> Items
 		{
 			get { return this.items; }
 			set { this.SetProperty(ref this.items, value); }

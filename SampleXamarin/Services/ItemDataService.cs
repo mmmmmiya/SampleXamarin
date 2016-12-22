@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace SampleXamarin.Services
 {
 	public interface IItemDataService
 	{
-		ObservableCollection<ItemData> GetAll();
+		IEnumerable<ItemData> GetAll();
 		ItemData GetById(int id);
 		void Insert(ItemData itemData);
 		void Delete(int id);
@@ -22,14 +23,14 @@ namespace SampleXamarin.Services
 			realm = Realm.GetInstance();
 		}
 
-		public ObservableCollection<ItemData> GetAll()
+		public IEnumerable<ItemData> GetAll()
 		{
 			var items = realm.All<ItemData>().ToList();
 			foreach (var item in items)
 			{
 				Debug.WriteLine("["+item.Id+"]:"+item.Message);
 			}
-			return new ObservableCollection<ItemData>(items);
+			return items;
 		}
 
 		public ItemData GetById(int id)

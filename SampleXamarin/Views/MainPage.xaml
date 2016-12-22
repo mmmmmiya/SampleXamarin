@@ -2,13 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" prism:ViewModelLocator.AutowireViewModel="True" x:Class="SampleXamarin.Views.MainPage" Title="Realm" x:Name="Page">
 	<ContentPage.Content>
         <StackLayout Padding="30,5,30,5">
-            <ListView ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" ItemSelected="OnItemTapped">
+            <ListView ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
-<!--							<ViewCell.ContextActions>
-								<MenuItem Text="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding}" IsDestructive="true" />
-							</ViewCell.ContextActions>-->
+							<ViewCell.ContextActions>
+								<MenuItem Text="Delete" Command="{Binding BindingContext.DeleteCommand, Source={x:Reference Page}" CommandParameter="{Binding}" IsDestructive="true" />
+							</ViewCell.ContextActions>
 							<Label Text="{Binding Message}" />
 						</ViewCell>
 					</DataTemplate>
